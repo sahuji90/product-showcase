@@ -67,27 +67,17 @@ function App() {
   return (
     <div className="App">
       <h1>Product showcase</h1>
-    <Section title="Products on Sale">
-      <ProductCard
-        name="gaming laptop pro"
-        description="high performance laptop for gaming"
-        isOnSale={true}
-        price={1299}
-        salePrice={1099}
-        image="/images/laptop.jpg"/>
-        </Section>
-      <Section title="Featured Products">
-        <ProductCard
-        name="Smartphone ultra"
-        description="high performance smartphone with camera"
-        price={899}
-        image="/images/mobile.jpg"/>
-
-        <ProductCard
-        name="wireless headphones pro"
-        description="high performance earphones with enc"
-        price={299}
-        image="/images/earphones.jpg"/>
+    <Section title="Our products">
+        {products.map(product=> (
+          <ProductCard
+            key={product.id}
+            name={product.name}
+            description={product.description}
+            price={product.price}
+            image={product.image}
+            isOnSale={product.isOnSale}
+          />
+        ))}
       </Section>
     </div>
   );
