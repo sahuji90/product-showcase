@@ -5,9 +5,14 @@ function ProductCard({name, image, description, price, isOnSale=false,salePrice=
   return (
     <div className='product-card'>
       <img src={image} alt={name}/>
-      <h3>{name}</h3>
+      <h3>{name}
+        {isOnSale && <span className="sale-badge">SALE</span>}
+      </h3>
       <p>{description}</p>
-      <span className="price">${price}</span>
+      <span className="price">{isOnSale ? (<>
+        <span className='original-price'>${price}</span>
+        <span className='sale-price'>${salePrice}</span>
+      </>):(`$${price}`)}</span>
       <button onClick={()=> alert(`Added ${name} to cart`)}>Add to Cart</button>
     </div>
   )
@@ -20,8 +25,22 @@ function App() {
       <ProductCard
         name="gaming laptop pro"
         description="high performance laptop for gaming"
+        isOnSale={true}
         price={1299}
-        image="/images/lapotp.jpg"/>
+        salePrice={1099}
+        image="/images/laptop.jpg"/>
+
+        <ProductCard
+        name="Smartphone ultra"
+        description="high performance smartphone with camera"
+        price={899}
+        image="/images/mobile.jpg"/>
+
+        <ProductCard
+        name="wireless headphones pro"
+        description="high performance earphones with enc"
+        price={299}
+        image="/images/earphones.jpg"/>
     </div>
   );
 }
